@@ -4,4 +4,6 @@ python:
 
 script:
   - honcho start &
+  - sleep 2
   - aloe
+  - sleep 2
