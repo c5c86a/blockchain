@@ -3,7 +3,7 @@ python:
   - 3.5
 
 script:
-  - python node.py &
+  - honcho start &
   - aloe --with-coverage
 
 after_success:
