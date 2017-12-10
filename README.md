@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/nicosmaris/simple_blockchain.svg?branch=master)](https://travis-ci.org/nicosmaris/simple_blockchain) 
+[![Build Status](https://travis-ci.org/nicosmaris/blockchain.svg?branch=master)](https://travis-ci.org/nicosmaris/blockchain) [![Codecov](https://img.shields.io/codecov/c/github/nicosmaris/blockchain/master.svg?style=flat-square&label=coverage)](https://codecov.io/gh/nicosmaris/blockchain)
 
 The goal of this repository is to understand a minimal implementation of a Nakamoto transactional blockchain by writing a few tests.
 
