@@ -5,7 +5,9 @@ The goal of this repository is to understand a minimal implementation of a Nakam
 This repo was inspired by :
 
 https://github.com/drewrice2/simple_blockchain
+
 [Aunyks's tiny blockchain implementation in Python](https://gist.github.com/aunyks/47d157f8bc7d1829a729c2a6a919c173)
+
 [Satoshi Nakamoto's blockchain whitepaper](https://bitcoin.org/bitcoin.pdf)
 
 ### Implementation
@@ -64,33 +66,4 @@ To send a transaction to the node:
 ```bash
 curl -X POST -H "Content-Type: application/json" -d "{'to':'you',
   'from':'me','amount':10}" http://localhost:8060/transaction
-```
-
-(Windows)
-```bash
-curl -X POST -H "Content-Type: application/json" -d "{\"to\":\"you\",
-  \"from\":\"me\",\"amount\":10}" http://localhost:8060/transaction
-```
-
----
-
-### Future plans and other details
-
-I plan to learn much more about the fundamentals of blockchain by way of
-implementation. This repo began as a side project in a private repository. After
-making some initial headway, I figured some people may be interested in Python
-blockchains.
-
-Constructive criticism and questions are welcomed! This implementation is far
-from perfect; I will be refactoring and optimizing as time allows.
-
-Aside from built-in Python packages, such as `json`, this implementation
-requires:
-- flask
-- requests
-- datetime
-
-Install dependencies with:
-```bash
-pip install -r requirements.txt
 ```
