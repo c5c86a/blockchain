@@ -3,7 +3,7 @@ python:
   - 3.5
 
 script:
-  - honcho start &
-  - sleep 2
+  - docker-compose up
+  - sleep 3
+  - bash transactions.sh
   - aloe
-  - sleep 2

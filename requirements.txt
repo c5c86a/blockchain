@@ -1,5 +1,7 @@
-flask
 requests
-datetime
 aloe
 honcho
+docopt
+falcon>=1.0
+gunicorn>=19.4.5
+pyyaml
