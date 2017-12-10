@@ -3,7 +3,7 @@ python:
   - 3.5
 
 script:
-  - docker-compose up
-  - sleep 3
+  - docker-compose up -d
+  - sleep 20
   - bash transactions.sh
   - aloe
