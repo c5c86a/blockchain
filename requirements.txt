@@ -1,4 +1,6 @@
 flask
 requests
 datetime
+coverage
 aloe
+codecov
