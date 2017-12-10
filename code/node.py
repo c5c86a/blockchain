@@ -11,9 +11,9 @@ from sys import argv
 # --------------------------------------------------------
 #  node-specific initialization parameters
 this_nodes_transactions = []
-PORT = argv[1]
+PORT = int(argv[1])
 peer_nodes = [
-    "http://localhost:" + str(argv[2])
+    "http://localhost:" + argv[2]
     ]
 miner_address = 'http://localhost:' + str(PORT)
 
