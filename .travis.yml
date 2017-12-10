@@ -3,8 +3,9 @@ python:
   - 3.5
 
 script:
+  - export COVERAGE_PROCESS_START=true
   - honcho start &
-  - aloe --with-coverage
+  - aloe --with-coverage --cover-package=code
 
 after_success:
   - codecov
