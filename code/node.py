@@ -6,15 +6,14 @@ import hashlib
 from requests.exceptions import ConnectionError
 import json
 from block import Block
+from sys import argv
 
 # --------------------------------------------------------
 #  node-specific initialization parameters
 this_nodes_transactions = []
-PORT = 8080
+PORT = argv[1]
 peer_nodes = [
-    "http://localhost:8060"
-    , "http://localhost:8070"
-    # , "http://localhost:8090"
+    "http://localhost:" + str(argv[2])
     ]
 miner_address = 'http://localhost:' + str(PORT)
 
