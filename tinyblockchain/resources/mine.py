@@ -11,6 +11,9 @@ class MineResource(object):
         self.state = state
 
     def on_get(self, req, resp, **params):
+        resp.body = self.process()
+
+    def process(self):
         self.consensus()
 
         # Get the last proof of work
@@ -44,7 +47,7 @@ class MineResource(object):
         )
         self.state.blockchain.append(mined_block)
         # Let the client know we mined a block
-        resp.body = json.dumps({
+        return json.dumps({
             "index": new_block_index,
             "timestamp": str(new_block_timestamp),
             "data": new_block_data,
@@ -84,7 +87,12 @@ class MineResource(object):
         for node_url in self.state.peer_nodes:
             chain = None
             try:
-                chain = requests.get(node_url + "/blocks")
+                if isinstance(node_url, str):
+                    chain = requests.get(node_url + "/blocks")
+                    if chain:
+                        chain = chain.content.decode('utf-8')
+                else:
+                    chain = node_url.get_blocks()
             except:
                 print('Unable to retrieve chain from peer {}'.format(
                     node_url))
@@ -92,7 +100,7 @@ class MineResource(object):
             if chain:
                 node_chain = []
                 # Chains will be returned as json, convert them to objects
-                c = json.loads(chain.content.decode('utf-8'))
+                c = json.loads(chain)
                 for block in c:
                     node_chain.append(Block(
                         block['index'],

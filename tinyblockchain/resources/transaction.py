@@ -11,10 +11,15 @@ class TransactionResource(object):
         resp.status = falcon.HTTP_200
         # On each new POST request, extract the transaction data
         new_txion = req.stream.read().decode('utf-8')
+        resp.body = self.process(new_txion)
+
+    def process(self, new_txion):
         new_txion = json.loads(new_txion)
         self.state.node_transactions.append(new_txion)
         print("New transaction")
         print("FROM: {}".format(new_txion['from'].encode('ascii', 'replace')))
         print("TO: {}".format(new_txion['to'].encode('ascii', 'replace')))
         print("AMOUNT: {}\n".format(new_txion['amount']))
-        resp.body = 'Transaction submission successful'
+        return 'Transaction submission successful'
+
+

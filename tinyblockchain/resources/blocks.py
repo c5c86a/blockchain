@@ -6,6 +6,9 @@ class BlocksResource(object):
         self.state = state
 
     def on_get(self, req, resp, **params):
+        resp.body = self.process()
+
+    def process(self):
         print("BlocksResource called")
         chain_to_send = []
         # Return chain as dictionary
@@ -17,4 +20,6 @@ class BlocksResource(object):
                 "data": block.data,
                 "hash": block.hash
             })
-        resp.body = json.dumps(chain_to_send)
+        return json.dumps(chain_to_send)
+
+

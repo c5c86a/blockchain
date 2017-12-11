@@ -21,6 +21,41 @@ from tinyblockchain.resources import mine
 from tinyblockchain.resources import transaction
 
 
+class Node(object):
+    """
+    Avoids docker, docker-compose and HTTP to simplify coverage reports
+    """
+    def start(self, peer_nodes):
+        super().__init__()
+
+        # Random address of the owner of this node
+        miner_address = str(uuid.uuid4())
+
+        # Manually construct a block with index zero and arbitrary
+        # previous hash
+        genesis_block = Block(0, datetime.datetime.now(), {
+            "proof-of-work": 9,
+            "transactions": None
+        }, "0")
+
+        # This node's blockchain copy
+        blockchain = [genesis_block]
+
+        state = State(miner_address, blockchain, peer_nodes, [], True)
+        self.transaction = transaction.TransactionResource(state)
+        self.mine = mine.MineResource(state)
+        self.block = blocks.BlocksResource(state)
+
+    def get_blocks(self):
+        return self.block.process()
+
+    def get_mine(self):
+        return self.mine.process()
+
+    def post_transaction(self, new_txion):
+        return self.transaction.process(new_txion)
+
+
 class ApiServer(falcon.API):
 
     def __init__(self, config):
